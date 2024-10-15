@@ -14,21 +14,20 @@ import socketio from '@feathersjs/socketio'
 import { configurationValidator } from './configuration.js'
 import { logger } from './logger.js'
 import { logError } from './hooks/log-error.js'
-import { mongodb } from './mongodb.js'
+import { authentication } from './authentication.js'
 import { services } from './services/index.js'
 import { channels } from './channels.js'
+import { mongooseClient } from './mongoose.js'
 
 const app = express(feathers())
 
-// Load app configuration
 app.configure(configuration(configurationValidator))
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-// Host the public folder
+
 app.use('/', serveStatic(app.get('public')))
 
-// Configure services and real-time functionality
 app.configure(rest())
 app.configure(
   socketio({
@@ -37,8 +36,8 @@ app.configure(
     }
   })
 )
-app.configure(mongodb)
-
+app.configure(mongooseClient)
+app.configure(authentication)
 app.configure(services)
 app.configure(channels)
 
