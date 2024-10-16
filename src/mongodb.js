@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 
-export const mongodb = (app) => {
+export const mongoosedb = (app) => {
   const connection = app.get('mongodb');
-  // const database = new URL(connection).pathname.substring(1);
-  const mongoClient = mongoose
-  .connect(connection)
-  .then(() => console.log('Connected to MongoDb'));
+  mongoose.connect(connection).catch((err) => {
+    logger.error(err);
+    process.exit(1);
+  });
 
-  app.set('mongodbClient', mongoClient);
+  mongoose.set('debug', true);
+
+  app.set('mongooseClient', mongoose);
 };
