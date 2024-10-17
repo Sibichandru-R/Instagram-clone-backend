@@ -6,6 +6,7 @@ import express, {
   cors,
   serveStatic,
   notFound,
+
   errorHandler,
 } from '@feathersjs/express';
 import configuration from '@feathersjs/configuration';
@@ -19,6 +20,7 @@ import { channels } from './channels.js';
 
 const app = express(feathers());
 
+
 // Load app configuration
 app.configure(configuration(configurationValidator));
 app.use(cors());
@@ -29,17 +31,13 @@ app.use('/', serveStatic(app.get('public')));
 
 // Configure services and real-time functionality
 app.configure(rest());
+
 app.configure(
   socketio({
     cors: {
       origin: app.get('origins'),
     },
   })
-);
-app.configure(mongoosedb);
-
-app.configure(services);
-app.configure(channels);
 
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
