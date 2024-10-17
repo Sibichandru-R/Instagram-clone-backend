@@ -15,6 +15,11 @@ export const PostModel = (app) => {
     },
     created_date: {
       type: Date,
+      default: new Date(),
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
     // user:{
     //   type:Schema.Types.ObjectId,
@@ -22,10 +27,10 @@ export const PostModel = (app) => {
     // }
   });
   // _id - ObjectId
-  // Caption - String
-  // Post File - Buffer
-  // User - Reference Id
-  // Created_date - Date
-  // Likes - Number
+  // caption - String
+  // postFile - Buffer
+  // user - Reference Id
+  // created_date - Date
+  // likes - Number
   return mongooseClient.model(modelName, postSchema);
 };

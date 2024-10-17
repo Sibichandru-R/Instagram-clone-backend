@@ -1,6 +1,5 @@
-// For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
-
 import { PostsService, getOptions } from './posts.class.js';
+import { checkNotDeleted } from './posts.hooks.js';
 
 export const postsPath = 'posts';
 export const postsMethods = ['find', 'get', 'create', 'patch', 'remove'];
@@ -13,5 +12,13 @@ export const posts = (app) => {
     methods: postsMethods,
     events: [],
   });
-  app.service(postsPath).hooks({});
+  app.service(postsPath).hooks({
+    before: {
+      find: [checkNotDeleted],
+      get: [checkNotDeleted],
+      create: [], //Need to add data resolver
+      patch: [],
+      remove: [], //need to add soft delete
+    },
+  });
 };
