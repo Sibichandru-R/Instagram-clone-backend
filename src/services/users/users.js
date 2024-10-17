@@ -1,4 +1,5 @@
 import { hooks as schemaHooks } from '@feathersjs/schema'
+import { verifyUser } from '../../hooks/verifyUser.js'
 import { userDataResolver, userExternalResolver } from './userResolver.js'
 import { UserService, getOptions } from './users.class.js'
 
@@ -19,6 +20,9 @@ export const user = (app) => {
     around: {
       all: [schemaHooks.resolveExternal(userExternalResolver)],
       create: [schemaHooks.resolveData(userDataResolver)]
+    },
+    before:{
+      create:[verifyUser]
     }
   })
 }
