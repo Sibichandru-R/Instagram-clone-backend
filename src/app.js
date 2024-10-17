@@ -6,8 +6,6 @@ import express, {
   cors,
   serveStatic,
   notFound,
-
-
   errorHandler,
 } from '@feathersjs/express';
 import configuration from '@feathersjs/configuration';
@@ -18,9 +16,9 @@ import { logError } from './hooks/log-error.js';
 import { mongoosedb } from './mongodb.js';
 import { services } from './services/index.js';
 import { channels } from './channels.js';
+import { authentication } from './authentication.js';
 
 const app = express(feathers());
-
 
 // Load app configuration
 app.configure(configuration(configurationValidator));
@@ -32,7 +30,7 @@ app.use('/', serveStatic(app.get('public')));
 
 // Configure services and real-time functionality
 app.configure(rest());
-
+app.configure(authentication);
 app.configure(
   socketio({
     cors: {
@@ -43,7 +41,6 @@ app.configure(
 app.configure(mongoosedb);
 app.configure(services);
 app.configure(channels);
-
 
 // Configure a middleware for 404s and the error handler
 app.use(notFound());

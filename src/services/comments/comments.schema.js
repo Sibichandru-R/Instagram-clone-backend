@@ -13,6 +13,7 @@ export const commentsModel = (app) => {
     },
     created_date: {
       type: Date,
+      default: new Date(),
     },
     post: {
       type: Schema.Types.ObjectId,
@@ -21,4 +22,3 @@ export const commentsModel = (app) => {
   });
   return mongooseClient.model(modelName, commentSchema);
 };
-

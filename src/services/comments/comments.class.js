@@ -1,11 +1,26 @@
-import { MongoDBService } from '@feathersjs/mongodb';
+import { commentsModel } from './comments.schema.js';
+import Services from 'feathers-mongoose';
 
-// By default calls the standard MongoDB adapter service methods but can be customized with your own functionality.
-export class CommentsService extends MongoDBService {}
+const { Service } = Services;
+
+export class CommentsService extends Service {
+  async find(params) {
+    const _params = {
+      ...params,
+      query: {
+        ...params.query,
+        post: params.route.post_id,
+      },
+    };
+    console.log(_params);
+    return super.find(_params);
+  }
+}
 
 export const getOptions = (app) => {
   return {
     paginate: app.get('paginate'),
-    Model: app.get('mongodbClient').then((db) => db.collection('comments')),
+    Model: commentsModel(app),
+    whitelist: ['$populate'],
   };
 };

@@ -1,7 +1,7 @@
 import { PostsService, getOptions } from './posts.class.js';
 import { checkNotDeleted } from './posts.hooks.js';
 
-export const postsPath = 'posts';
+export const postsPath = 'users/:user_id/posts';
 export const postsMethods = ['find', 'get', 'create', 'patch', 'remove'];
 
 export * from './posts.class.js';
