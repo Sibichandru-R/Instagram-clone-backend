@@ -1,10 +1,11 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 
-import { hooks as schemaHooks } from '@feathersjs/schema';
+import { hooks as schemaHooks } from '@feathersjs/schema';  
 
 import { CommentsService, getOptions } from './comments.class.js';
+import { checkNotDeleted } from './comments.hooks.js';
 
-export const commentsPath = 'posts/:post_id/comments';
+export const commentsPath = 'users/:user_id/posts/:post_id/comments';
 
 export const commentsMethods = ['find', 'get', 'create', 'patch', 'remove'];
 
@@ -23,8 +24,8 @@ export const comments = (app) => {
     },
     before: {
       all: [],
-      find: [],
-      get: [],
+      find: [checkNotDeleted],
+      get: [checkNotDeleted],
       create: [],
       patch: [],
       remove: [],
