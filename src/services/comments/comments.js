@@ -1,4 +1,6 @@
+
 import { CommentsService, getOptions } from './comments.class.js';
+import { checkNotDeleted } from './comments.hooks.js';
 
 export const commentsPath = 'users/:user_id/posts/:post_id/comments';
 
@@ -18,8 +20,8 @@ export const comments = (app) => {
     },
     before: {
       all: [],
-      find: [],
-      get: [],
+      find: [checkNotDeleted],
+      get: [checkNotDeleted],
       create: [],
       patch: [],
       remove: [],

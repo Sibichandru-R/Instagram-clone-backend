@@ -19,6 +19,10 @@ export const commentsModel = (app) => {
       type: Schema.Types.ObjectId,
       ref: 'Posts',
     },
+    isDeleted:{
+      type: Boolean,
+      default: false
+    }
   });
   return mongooseClient.model(modelName, commentSchema);
 };
