@@ -7,6 +7,7 @@ import express, {
   serveStatic,
   notFound,
 
+
   errorHandler,
 } from '@feathersjs/express';
 import configuration from '@feathersjs/configuration';
@@ -38,6 +39,11 @@ app.configure(
       origin: app.get('origins'),
     },
   })
+);
+app.configure(mongoosedb);
+app.configure(services);
+app.configure(channels);
+
 
 // Configure a middleware for 404s and the error handler
 app.use(notFound());
