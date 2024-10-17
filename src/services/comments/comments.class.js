@@ -4,7 +4,16 @@ import Services from 'feathers-mongoose';
 const { Service } = Services;
 
 export class CommentsService extends Service {
-
+  async find(params) {
+    const _params = {
+      ...params,
+      query: {
+        ...params.query,
+        post: params.route.post_id,
+      },
+    }
+    return super.find(_params);
+  }
   /**
    * @name get
    * @description this method is used to retrive the specific comment
@@ -12,16 +21,14 @@ export class CommentsService extends Service {
    * @param {Object} params 
    * @returns Object
    */
-  async get(id, params) {
-    console.log(params);
-    const _params = {
+    async get(id, params) {
+      const _params = {
       ...params,
       query: {
         ...params.query,
         post: params.route.post_id,
       },
-    };
-    console.log(params);
+    }
     return super.get(id, _params);
   }
 

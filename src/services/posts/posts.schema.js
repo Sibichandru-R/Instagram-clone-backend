@@ -5,6 +5,7 @@ export const PostModel = (app) => {
   const postSchema = new Schema({
     caption: {
       type: String,
+      default: '',
     },
     postFile: {
       type: Buffer,
@@ -20,12 +21,11 @@ export const PostModel = (app) => {
     isDeleted: {
       type: Boolean,
       default: false,
-
     },
-    // user:{
-    //   type:Schema.Types.ObjectId,
-    //   ref:'User'
-    // }
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
   });
   // _id - ObjectId
   // caption - String
