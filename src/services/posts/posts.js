@@ -12,6 +12,7 @@ export const posts = (app) => {
     methods: postsMethods,
     events: [],
   });
+
   app.service(postsPath).hooks({
     before: {
       find: [checkNotDeleted],

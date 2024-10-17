@@ -21,3 +21,4 @@ export const commentsModel = (app) => {
   });
   return mongooseClient.model(modelName, commentSchema);
 };
+

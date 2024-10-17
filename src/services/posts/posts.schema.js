@@ -20,6 +20,7 @@ export const PostModel = (app) => {
     isDeleted: {
       type: Boolean,
       default: false,
+
     },
     // user:{
     //   type:Schema.Types.ObjectId,

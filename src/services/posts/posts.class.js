@@ -10,5 +10,6 @@ export const getOptions = (app) => {
     paginate: app.get('paginate'),
     Model: PostModel(app),
     whitelist: ['$populate'],
+
   };
 };
