@@ -7,6 +7,7 @@ import { checkNotDeleted } from './users.hooks.js';
 export const userPath = 'users';
 export const userMethods = ['find', 'get', 'create', 'patch', 'remove'];
 
+
 export * from './users.class.js';
 export * from './users.schema.js';
 

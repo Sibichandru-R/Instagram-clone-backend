@@ -12,6 +12,7 @@ export class CommentsService extends Service {
         post: params.route.post_id,
       },
     };
+
     return super.find(_params);
   }
   /**
@@ -21,8 +22,9 @@ export class CommentsService extends Service {
    * @param {Object} params
    * @returns Object
    */
-  async get(id, params) {
-    const _params = {
+
+    async get(id, params) {
+      const _params = {
       ...params,
       query: {
         ...params.query,
