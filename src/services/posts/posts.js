@@ -16,7 +16,7 @@ export const posts = (app) => {
     multipartMiddleware.single('postFile'),
 
     function (req, res, next) {
-      console.log(req.file);
+      req.feathers.caption = req.body.caption;
       req.feathers.file = req.file;
       next();
     },

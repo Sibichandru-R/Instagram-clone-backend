@@ -16,7 +16,7 @@ export class PostsService extends Service {
   }
 
   async get(id, params) {
-    console.log(params)
+    console.log(params);
     const _params = {
       ...params,
       query: {
@@ -37,7 +37,8 @@ export class PostsService extends Service {
     const _data = {
       ...data,
       user: params.route.user_id,
-      postFile: params.file,
+      caption: params.caption,
+      postFile: params.file.buffer,
     };
     return super.create(_data, params);
   }
