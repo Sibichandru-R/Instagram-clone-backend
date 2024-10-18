@@ -1,12 +1,12 @@
-import { hooks as schemaHooks } from '@feathersjs/schema'
-import { verifyUser } from '../../hooks/verifyUser.js'
-import { userDataResolver, userExternalResolver } from './userResolver.js'
-import { UserService, getOptions } from './users.class.js'
+import { hooks as schemaHooks } from '@feathersjs/schema';
+import { verifyUser } from '../../hooks/verifyUser.js';
+import { userDataResolver, userExternalResolver } from './users.hooks.js';
+import { UserService, getOptions } from './users.class.js';
 import { checkNotDeleted } from './users.hooks.js';
-
 
 export const userPath = 'users';
 export const userMethods = ['find', 'get', 'create', 'patch', 'remove'];
+
 
 export * from './users.class.js';
 export * from './users.schema.js';
@@ -25,7 +25,7 @@ export const user = (app) => {
     before: {
       find: [checkNotDeleted],
       get: [checkNotDeleted],
-      create:[verifyUser]
+      create: [verifyUser],
     },
   });
 };

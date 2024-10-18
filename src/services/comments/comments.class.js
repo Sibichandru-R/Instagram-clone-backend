@@ -11,16 +11,18 @@ export class CommentsService extends Service {
         ...params.query,
         post: params.route.post_id,
       },
-    }
+    };
+
     return super.find(_params);
   }
   /**
    * @name get
    * @description this method is used to retrive the specific comment
-   * @param {String} id 
-   * @param {Object} params 
+   * @param {String} id
+   * @param {Object} params
    * @returns Object
    */
+
     async get(id, params) {
       const _params = {
       ...params,
@@ -28,22 +30,22 @@ export class CommentsService extends Service {
         ...params.query,
         post: params.route.post_id,
       },
-    }
+    };
     return super.get(id, _params);
   }
 
   /**
-   * @name create 
+   * @name create
    * @description This method is used to create a new Comments
-   * @param {String} data 
-   * @param {Object} params 
+   * @param {String} data
+   * @param {Object} params
    * @returns Object
    */
   async create(data, params) {
-    console.log(data, params);
     const _data = {
       ...data,
       post: params.route.post_id,
+      user: params.route.user_id,
     };
 
     return super.create(_data);
@@ -51,7 +53,7 @@ export class CommentsService extends Service {
 
   /**
    * @name remove
-   * @description This method is used to soft delete the comments field 
+   * @description This method is used to soft delete the comments field
    * @param {String} id
    * @param {Object} params
    * @returns Object

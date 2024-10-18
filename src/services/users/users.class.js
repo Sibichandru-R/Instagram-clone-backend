@@ -4,6 +4,12 @@ import { userModel } from './users.schema.js';
 const { Service } = feathersMongoose;
 
 export class UserService extends Service {
+  /**
+   * @name remove
+   * @param {String}} id
+   * @param {Object} params
+   * @returns {Object}
+   */
   async remove(id, params) {
     const data = {
       isDeleted: true,

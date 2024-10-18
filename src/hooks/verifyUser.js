@@ -27,9 +27,7 @@ export const verifyUser = async (context) => {
   };
   const email = await checkUser(user.email, 'email');
   const userName = await checkUser(user.userName, 'userName');
-  console.log(email, userName);
   if (userName || email) {
-    console.log(email, userName);
     throw new Error('the user is already exists');
   }
   context.data = {
