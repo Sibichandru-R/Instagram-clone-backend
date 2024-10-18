@@ -19,10 +19,14 @@ export const commentsModel = (app) => {
       type: Schema.Types.ObjectId,
       ref: 'Posts',
     },
-    isDeleted:{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    isDeleted: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   });
   return mongooseClient.model(modelName, commentSchema);
 };

@@ -1,9 +1,9 @@
-
-
+import { likes } from './likes/likes.js';
 import { comments } from './comments/comments.js';
-import { user } from './users/users.js'
+import { user } from './users/users.js';
 import { posts } from './posts/posts.js';
 export const services = (app) => {
+  app.configure(likes);
   app.configure(comments);
   app.configure(user);
   app.configure(posts);

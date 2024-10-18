@@ -9,10 +9,7 @@ export const PostModel = (app) => {
     },
     postFile: {
       type: Buffer,
-    },
-    likes: {
-      type: Number,
-      default: 0,
+      contentType: String,
     },
     created_date: {
       type: Date,
