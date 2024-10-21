@@ -9,19 +9,23 @@ export class PostsService extends Service {
       ...params,
       query: {
         ...params.query,
-        user: params.route.user_id,
+        $populate: {
+          path: 'user',
+        },  
       },
     };
     return super.find(_params);
   }
 
   async get(id, params) {
-    console.log(params);
     const _params = {
       ...params,
       query: {
         ...params.query,
         user: params.route.user_id,
+        $populate: {
+          path: 'user',
+        },
       },
     };
     return super.get(id, _params);

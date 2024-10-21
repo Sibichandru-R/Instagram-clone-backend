@@ -1,10 +1,14 @@
 export const checkNotDeleted = (context) => {
-  context.params.query = {
-    ...context.params.query,
-    isDeleted: false,
-  };
-};
-
-export const testFunction = (context) => {
-  // console.log(context);
+  if (context.params.route.user_id == 'feed') {
+    context.params.query = {
+      ...context.params.query,
+      isDeleted: false,
+    };
+  } else {
+    context.params.query = {
+      ...context.params.query,
+      isDeleted: false,
+      user: context.params.route.user_id,
+    };
+  }
 };

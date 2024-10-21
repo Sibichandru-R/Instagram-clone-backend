@@ -1,5 +1,5 @@
 import { PostsService, getOptions } from './posts.class.js';
-import { checkNotDeleted, testFunction } from './posts.hooks.js';
+import { checkNotDeleted } from './posts.hooks.js';
 
 import multer from 'multer';
 const multipartMiddleware = multer();
@@ -31,7 +31,7 @@ export const posts = (app) => {
     before: {
       find: [checkNotDeleted],
       get: [checkNotDeleted],
-      create: [testFunction], //Need to add data resolver
+      create: [], //Need to add data resolver
       patch: [],
       remove: [], //need to add soft delete
     },
